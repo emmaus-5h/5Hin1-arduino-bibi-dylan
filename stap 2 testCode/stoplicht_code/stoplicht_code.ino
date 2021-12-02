@@ -42,10 +42,12 @@ int knop7 = 0;
 int knop8 = 0;
 
 // variabelen voor de toestanden
-const int BORING = 1; // alle stoplichten ROOD
-const int EXCITING = 2; // alle stoplichten ORANJE
-const int KAMIKAZE = 3; // alle stoplicht GROEN
-int toestand = BORING;
+const int een = 1; // alle stoplichten in toestand 1 
+const int twee = 2; // alle stoplichten in toestand 2 
+const int drie = 3; // alle stoplicht in toestand 3
+const int vier = 4; // alle stoplichten in toestand 4
+const int vijf = 5 // alle stoplichten in toestand 5
+int toestand = 1;
 unsigned long toestandStartTijd = 0;
 
 /*****************************************
@@ -169,8 +171,40 @@ void loop() {
   knop7 = digitalRead(pin7Knop);
   knop8 = digitalRead(pin8Knop);
 
+/*
+/* PSEUDOCODE 
+ALS toestand == een { 
+ALS tijd > 6 sec { 
+Toestand = twee
+}
+
+} 
+ALS toestand == twee { 
+ALS tijd > 1 sec { 
+Toestand = drie 
+}
+
+}
+ALS toestand == drie { 
+ALS tijd > 6 sec {
+Toestand = vier 
+}
+
+}
+ALS toestand == vier { 
+ALS tijd > 1 sec {
+Toestand = vijf 
+}
+
+}
+ALS toestand == een { 
+ALS tijd > 6 sec { 
+Toestand = twee
+}
+
+*/
   // bepaal toestand
-  if (toestand == BORING) {
+  if (toestand == eem) {
     if (millis() - toestandStartTijd > 1000) {
       toestandStartTijd = millis();
       toestand = KAMIKAZE;
