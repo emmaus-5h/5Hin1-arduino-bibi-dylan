@@ -179,7 +179,7 @@ void loop() {
   knop7 = digitalRead(pin7Knop);
   knop8 = digitalRead(pin8Knop);
 
-*/
+
   // bepaling van toestand 
   if (toestand == Teen) {
     if (millis() - toestandStartTijd > 6000) {
@@ -187,13 +187,14 @@ void loop() {
       toestand = Ttwee;
       Serial.println("Nieuwe toestand: Ttwee");
     }
+  }
      /*
     if (knop7 == HIGH || knop8 == HIGH) {
       toestand = EXCITING;
       Serial.println("Nieuwe toestand: EXCITING");
     }
     */
-  }
+  
   if (toestand == Ttwee) {
     if (millis() - toestandStartTijd > 1000) {
       toestandStartTijd = millis();
@@ -232,36 +233,139 @@ void loop() {
          toestand = Teen;
           Serial.println("Nieuwe toestand: Teen");
      }
+       }
+   if (toestand == Tzeven) { 
+      if (millis () - toestandStartTijd > 1000) {
+         toestandStartTijd = millis(); 
+         toestand = Teen;
+          Serial.println("Nieuwe toestand: Tacht");
+     }
+      
+      
    }
       if (knop7 == HIGH || knop8 == HIGH) {
       toestand = Tzeven;
-      Serial.println("Nieuwe toestand:Tacht");
+      Serial.println("Nieuwe toestand:Tzeven");
     }
+   
+       
+   if (toestand == Tacht) { 
+      if (millis () - toestandStartTijd > 6000) {
+         toestandStartTijd = millis(); 
+         toestand = Teen;
+          Serial.println("Nieuwe toestand: Tnegen");
+     }
   }
-  if (toestand == Tacht) {
-    if (knop7 == LOW && knop8 == LOW) { // beide knoppen niet ingedrukt
-      toestandStartTijd = millis();
-      toestand = Tnegen;
-      Serial.println("Nieuwe toestand: Tnegen");
-    }
+
+      
+   if (toestand == Tnegen) { 
+      if (millis () - toestandStartTijd > 1000) {
+         toestandStartTijd = millis(); 
+         toestand = Teen;
+          Serial.println("Nieuwe toestand: Tvijf");
+     }
   }
 
   // zet stoplichten conform toestand
-  if (toestand == BORING) {
-    for (int i = 1; i <= 8; i = i + 1) {
-      stoplicht(i, ROOD);
-    }
-  }
-  if (toestand == KAMIKAZE) {
-    for (int i = 1; i <= 8; i = i + 1) {
-      stoplicht(i, GROEN);
-    }
-  }
-  if (toestand == EXCITING) {
-    for (int i = 1; i <= 6; i = i + 1) {
-      stoplicht(i, ORANJE);
-    }
-  }
+   if (toestand == Teen) {
+     stoplicht(1, ROOD);
+     stoplicht(2, ROOD);
+     stoplicht(3, ROOD);
+     stoplicht(4, GROEN);
+     stoplicht(5, GROEN);
+     stoplicht(6, ROOD);
+     stoplicht(7, GROEN);
+     stoplicht(8, GROEN);
+
+     }
+  if (toestand == Ttwee) {
+     stoplicht(1, ROOD );
+     stoplicht(2, ROOD);
+     stoplicht(3, ROOD);
+     stoplicht(4, ORANJE);
+     stoplicht(5, ORANJE);
+     stoplicht(6, ROOD);
+     stoplicht(7, GROEN);
+     stoplicht(8, GROEN);
+
+     }
+ if  (toestand == Tdrie) {
+     stoplicht(1, GROEN);
+     stoplicht(2, GROEN);
+     stoplicht(3, GROEN);
+     stoplicht(4, ROOD);
+     stoplicht(5, ROOD);
+     stoplicht(6, ROOD);
+     stoplicht(7, ROOD);
+     stoplicht(8, ROOD); 
+        
+     }
+  if (toestand == Tvier) {
+     stoplicht(1, GROEN);
+     stoplicht(2, ORANJE);
+     stoplicht(3, ORANJE);
+     stoplicht(4, ROOD);
+     stoplicht(5, GROEN);
+     stoplicht(6, GROEN);
+     stoplicht(7, ROOD);
+     stoplicht(8, ROOD); 
+        
+     }
+ if  (toestand == Tvijf) {
+     stoplicht(1, GROEN);
+     stoplicht(2, ROOD);
+     stoplicht(3, ROOD);
+     stoplicht(4, ROOD);
+     stoplicht(5, GROEN);
+     stoplicht(6, GROEN);
+     stoplicht(7, ROOD);
+     stoplicht(8, ROOD);
+        
+     }
+  if (toestand == Tzes) {
+     stoplicht(1, ORANJE);
+     stoplicht(2, ROOD);
+     stoplicht(3, ROOD);
+     stoplicht(4, ROOD);
+     stoplicht(5, GROEN);
+     stoplicht(6, ROOD);
+     stoplicht(7, ROOD);
+     stoplicht(8, ROOD);
+        
+     }
+ if (toestand == Tzeven) {
+     stoplicht(1, ORANJE);
+     stoplicht(2, ORANJE);
+     stoplicht(3, ORANJE);
+     stoplicht(4, ROOD);
+     stoplicht(5, ROOD);
+     stoplicht(6, ROOD);
+     stoplicht(7, ROOD);
+     stoplicht(8, ROOD);
+        
+     }
+ if (toestand == Tacht) {
+     stoplicht(1, ROOD);
+     stoplicht(2, ROOD);
+     stoplicht(3, ROOD);
+     stoplicht(4, GROEN);
+     stoplicht(5, GROEN);
+     stoplicht(6, ROOD);
+     stoplicht(7, GROEN);
+     stoplicht(8, GROEN); 
+        
+     }
+  if (toestand == Tnegen) {
+     stoplicht(1, ROOD);
+     stoplicht(2, ROOD);
+     stoplicht(3, ROOD);
+     stoplicht(4, ORANJE);
+     stoplicht(5, GROEN);
+     stoplicht(6, ROOD);
+     stoplicht(7, GROEN);
+     stoplicht(8, GROEN);
+        
+     }
 
   // vertraging om te zorgen dat berichten op de seriele monitor leesbaar blijven
   delay(100);
