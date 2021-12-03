@@ -37,6 +37,10 @@ const int pin8Groen = 40; // pin van voetgangersstoplicht 8 groen
 const int pin7Knop  = 41; // pin van knop naast licht 7
 const int pin8Knop  = 43; // pin van knop naast licht 8
 
+// lampjes op de knoppen, die zitten niet op elk stoplichtenplein
+const int pin7Wit = 48; // pin van lamp in knop7 wit
+const int pin8Wit = 50; // pin van lamp in knop8 wit
+
 // variabelen om waarden van sensoren en actuatoren te onthouden
 int knop7 = 0;
 int knop8 = 0;
@@ -204,22 +208,24 @@ Toestand = twee
 
 */
   // bepaal toestand
-  if (toestand == eem) {
-    if (millis() - toestandStartTijd > 1000) {
+  if (toestand == een) {
+    if (millis() - toestandStartTijd > 6000) {
       toestandStartTijd = millis();
-      toestand = KAMIKAZE;
-      Serial.println("Nieuwe toestand: KAMIKAZE");
+      toestand = twee;
+      Serial.println("Nieuwe toestand: twee");
     }
+     /*
     if (knop7 == HIGH || knop8 == HIGH) {
       toestand = EXCITING;
       Serial.println("Nieuwe toestand: EXCITING");
     }
+    */
   }
-  if (toestand == KAMIKAZE) {
+  if (toestand == twee) {
     if (millis() - toestandStartTijd > 1000) {
       toestandStartTijd = millis();
-      toestand = BORING;
-      Serial.println("Nieuwe toestand: BORING");
+      toestand = drie;
+      Serial.println("Nieuwe toestand: drie");
     }
     if (knop7 == HIGH || knop8 == HIGH) {
       toestand = EXCITING;
