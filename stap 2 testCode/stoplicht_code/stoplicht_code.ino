@@ -199,8 +199,41 @@ void loop() {
       toestandStartTijd = millis();
       toestand = Tdrie;
       Serial.println("Nieuwe toestand: Tdrie");
-    }
-    if (knop7 == HIGH || knop8 == HIGH) {
+     }
+  }
+   if (toestand == Tdrie) { 
+      if (millis () - toestandStartTijd > 6000) {
+         toestandStartTijd = millis(); 
+         toestand = Tvier;
+          Serial.println("Nieuwe toestand: Tvier");
+     }
+      
+ }
+   if (toestand == Tvier) { 
+      if (millis () - toestandStartTijd > 1000) {
+         toestandStartTijd = millis(); 
+         toestand = Tvijf;
+          Serial.println("Nieuwe toestand: Tvijf");
+     }
+      
+}
+   if (toestand == Tvijf) { 
+      if (millis () - toestandStartTijd > 6000) {
+         toestandStartTijd = millis(); 
+         toestand = Tvier;
+          Serial.println("Nieuwe toestand: Tzes");
+     }
+      
+ 
+   }
+   if (toestand == Tzes) { 
+      if (millis () - toestandStartTijd > 1000) {
+         toestandStartTijd = millis(); 
+         toestand = Teen;
+          Serial.println("Nieuwe toestand: Teen");
+     }
+   }
+      if (knop7 == HIGH || knop8 == HIGH) {
       toestand = Tzeven;
       Serial.println("Nieuwe toestand:Tacht");
     }
