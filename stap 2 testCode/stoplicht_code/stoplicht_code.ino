@@ -46,12 +46,16 @@ int knop7 = 0;
 int knop8 = 0;
 
 // variabelen voor de toestanden
-const int een = 1; // alle stoplichten in toestand 1 
-const int twee = 2; // alle stoplichten in toestand 2 
-const int drie = 3; // alle stoplicht in toestand 3
-const int vier = 4; // alle stoplichten in toestand 4
-const int vijf = 5 // alle stoplichten in toestand 5
-int toestand = 1;
+const int Teen = 1; // alle stoplichten in toestand 1 
+const int Ttwee = 2; // alle stoplichten in toestand 2 
+const int Tdrie = 3; // alle stoplicht in toestand 3
+const int Tvier = 4; // alle stoplichten in toestand 4
+const int Tvijf = 5; // alle stoplichten in toestand 5
+const int Tzes = 6; // alle stoplichten in toestand 6
+const int Tzeven = 7; // alle stoplichten in toestand 7
+const int Tacht = 8; // alle stoplichten in toestand 8
+const int Tnegen = 9; // alle stoplichten in toestand 9
+int toestand = Teen;
 unsigned long toestandStartTijd = 0;
 
 /*****************************************
@@ -175,44 +179,13 @@ void loop() {
   knop7 = digitalRead(pin7Knop);
   knop8 = digitalRead(pin8Knop);
 
-/*
-/* PSEUDOCODE 
-ALS toestand == een { 
-ALS tijd > 6 sec { 
-Toestand = twee
-}
-
-} 
-ALS toestand == twee { 
-ALS tijd > 1 sec { 
-Toestand = drie 
-}
-
-}
-ALS toestand == drie { 
-ALS tijd > 6 sec {
-Toestand = vier 
-}
-
-}
-ALS toestand == vier { 
-ALS tijd > 1 sec {
-Toestand = vijf 
-}
-
-}
-ALS toestand == een { 
-ALS tijd > 6 sec { 
-Toestand = twee
-}
-
 */
-  // bepaal toestand
-  if (toestand == een) {
+  // bepaling van toestand 
+  if (toestand == Teen) {
     if (millis() - toestandStartTijd > 6000) {
       toestandStartTijd = millis();
-      toestand = twee;
-      Serial.println("Nieuwe toestand: twee");
+      toestand = Ttwee;
+      Serial.println("Nieuwe toestand: Ttwee");
     }
      /*
     if (knop7 == HIGH || knop8 == HIGH) {
@@ -221,22 +194,22 @@ Toestand = twee
     }
     */
   }
-  if (toestand == twee) {
+  if (toestand == Ttwee) {
     if (millis() - toestandStartTijd > 1000) {
       toestandStartTijd = millis();
-      toestand = drie;
-      Serial.println("Nieuwe toestand: drie");
+      toestand = Tdrie;
+      Serial.println("Nieuwe toestand: Tdrie");
     }
     if (knop7 == HIGH || knop8 == HIGH) {
-      toestand = EXCITING;
-      Serial.println("Nieuwe toestand:EXCITING");
+      toestand = Tzeven;
+      Serial.println("Nieuwe toestand:Tacht");
     }
   }
-  if (toestand == EXCITING) {
+  if (toestand == Tacht) {
     if (knop7 == LOW && knop8 == LOW) { // beide knoppen niet ingedrukt
       toestandStartTijd = millis();
-      toestand = BORING;
-      Serial.println("Nieuwe toestand: BORING");
+      toestand = Tnegen;
+      Serial.println("Nieuwe toestand: Tnegen");
     }
   }
 
